@@ -41,7 +41,7 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
   res.send("⚡️[server] up and running");
 })
 
@@ -53,25 +53,25 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Set up GET route for signup form
-app.get('/signup', (req, res) => {
+app.get('/signup', (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, 'public/signup.html'));
 });
 
 
 // Set up GET route for login form
-app.get('/login', (req, res) => {
+app.get('/login', (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, 'public/login.html'));
 });
 
 
 // Set up a sample dashboard route
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
   res.send('Welcome to the Node Js/ Express App !');
 });
 
 
 // Route handler for fetching all users
-app.get('/users', async (req, res) => {
+app.get('/users', async (req: Request, res: Response) => {
   try {
     // Fetch all users from the database
     const users = await User.find();
@@ -89,7 +89,7 @@ app.get('/users', async (req, res) => {
 });
 
 // Signup
-app.post('/signup', async (req, res) => {
+app.post('/signup', async (req: Request, res: Response) => {
   // Fetch all users from the database
   const users = await User.find();
 
@@ -106,7 +106,7 @@ app.post('/signup', async (req, res) => {
   res.status(201).json({ message: 'User created successfully' });
 });
 
-app.post('/login', async (req, res) => {
+app.post('/login', async (req: Request, res: Response) => {
   const { username, password } = req.body;
 
   try {
@@ -134,7 +134,7 @@ app.post('/login', async (req, res) => {
 
 
 // Token Refresh
-app.post('/token', (req, res) => {
+app.post('/token', (req: Request, res: Response) => {
   const { refreshToken } = req.body;
   if (!refreshToken) {
     return res.sendStatus(401);
@@ -149,7 +149,7 @@ app.post('/token', (req, res) => {
   });
 });
 
-app.delete('/deleteUser', authenticateToken, async (req, res) => {
+app.delete('/deleteUser', authenticateToken, async (req: Request, res: Response) => {
   const { username } = req.body;
   const authenticatedUser = (req as any).user.username;
 
