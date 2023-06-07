@@ -24,6 +24,6 @@ Start the server
 ```bash
   npm run start
 ```
-now there are three urls for to test - 
+now check your localhost:8000 for application, there are three urls - 
 
-signup, login and users to check delete url use postman with delete request method and pass username in body as json like `{'username': 'yourUserName'}`
+signup, login and users also to check delete url use postman with delete request method and pass username in body as json like `{'username': 'yourUserName'}`
